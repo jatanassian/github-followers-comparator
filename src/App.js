@@ -1,10 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SearchBox from "./components/search-box/search-box.component";
 import "./App.css";
 
 function App() {
   const [firstUserFollowers, setFirstUserFollowers] = useState([]);
   const [secondUserFollowers, setSecondUserFollowers] = useState([]);
+  const [commonFollowers, setCommonFollowers] = useState([]);
+
+  useEffect(() => {
+    console.log(firstUserFollowers);
+    console.log(secondUserFollowers);
+    const followers = firstUserFollowers.filter((follower1) => {
+      return secondUserFollowers.find(
+        (follower2) => follower1.id === follower2.id
+      );
+    });
+    console.log(followers);
+    setCommonFollowers(followers);
+  }, [firstUserFollowers, secondUserFollowers]);
 
   const handleSubmit = async (event, searchFields) => {
     const { firstUser, secondUser } = searchFields;
