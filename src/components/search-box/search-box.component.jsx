@@ -5,7 +5,7 @@ const defaultSearchFields = {
   secondUser: "",
 };
 
-const SearchBox = () => {
+const SearchBox = ({ handleSubmit }) => {
   const [searchFields, setSearchFields] = useState(defaultSearchFields);
   const { firstUser, secondUser } = searchFields;
 
@@ -14,14 +14,8 @@ const SearchBox = () => {
     setSearchFields({ ...searchFields, [name]: value });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    console.log(searchFields);
-  };
-
   return (
-    <form>
+    <form onSubmit={(event) => handleSubmit(event, searchFields)}>
       <input
         type="search"
         name="firstUser"
@@ -36,9 +30,7 @@ const SearchBox = () => {
         value={secondUser}
         onChange={handleChange}
       />
-      <button type="submit" onClick={handleSubmit}>
-        Search
-      </button>
+      <button type="submit">Search</button>
     </form>
   );
 };
