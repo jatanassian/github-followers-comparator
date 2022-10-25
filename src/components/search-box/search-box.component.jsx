@@ -27,7 +27,7 @@ const SearchBox = ({ handleSubmit }) => {
             value={firstUser}
             onChange={handleChange}
           />
-          <label for="firstUser">First GitHub user</label>
+          <label>First GitHub user</label>
         </div>
 
         <div className="form-input">
@@ -38,7 +38,7 @@ const SearchBox = ({ handleSubmit }) => {
             value={secondUser}
             onChange={handleChange}
           />
-          <label for="firstUser">Second GitHub user</label>
+          <label>Second GitHub user</label>
         </div>
       </div>
       <button type="submit">Search</button>
