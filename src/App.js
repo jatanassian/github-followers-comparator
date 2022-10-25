@@ -8,7 +8,7 @@ import { parseLinkHeader } from "@web3-storage/parse-link-header";
 function App() {
   const [firstUserFollowers, setFirstUserFollowers] = useState([]);
   const [secondUserFollowers, setSecondUserFollowers] = useState([]);
-  const [commonFollowers, setCommonFollowers] = useState([]);
+  const [commonFollowers, setCommonFollowers] = useState(null);
 
   // Create array of followers in common when followers arrays are updated
   useEffect(() => {
@@ -21,6 +21,7 @@ function App() {
   }, [firstUserFollowers, secondUserFollowers]);
 
   const handleSubmit = async (event, searchFields) => {
+    setCommonFollowers(null);
     const { firstUser, secondUser } = searchFields;
     event.preventDefault();
 
