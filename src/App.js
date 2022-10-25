@@ -3,18 +3,20 @@ import SearchBox from "./components/search-box/search-box.component";
 import FollowersList from "./components/followers-list/followers-list.component";
 import "./App.css";
 
+import { parseLinkHeader } from "@web3-storage/parse-link-header";
+
 function App() {
   const [firstUserFollowers, setFirstUserFollowers] = useState([]);
   const [secondUserFollowers, setSecondUserFollowers] = useState([]);
   const [commonFollowers, setCommonFollowers] = useState([]);
 
+  // Create array of followers in common when followers arrays are updated
   useEffect(() => {
     const followers = firstUserFollowers.filter((follower1) => {
       return secondUserFollowers.find(
         (follower2) => follower1.id === follower2.id
       );
     });
-    console.log(followers);
     setCommonFollowers(followers);
   }, [firstUserFollowers, secondUserFollowers]);
 
@@ -28,12 +30,23 @@ function App() {
     setSecondUserFollowers(secondFollowers);
   };
 
-  const getFollowers = async (username) => {
+  const getFollowers = async (username, url = "") => {
     try {
       const res = await fetch(
-        `https://api.github.com/users/${username}/followers`
+        url || `https://api.github.com/users/${username}/followers?per_page=100`
       );
+
       const followers = await res.json();
+      const linkHeader = res.headers.get("Link");
+
+      if (linkHeader) {
+        const parsed = parseLinkHeader(linkHeader);
+        // Get followers of next page if next exists
+        if (parsed.next?.url) {
+          const nextFollowers = await getFollowers(username, parsed.next.url);
+          followers.push(...nextFollowers);
+        }
+      }
       return followers;
     } catch (error) {
       console.log(error);
