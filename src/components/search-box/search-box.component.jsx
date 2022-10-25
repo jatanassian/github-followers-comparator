@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import "./search-box.styles.css";
+
 const defaultSearchFields = {
   firstUser: "",
   secondUser: "",
@@ -16,20 +18,29 @@ const SearchBox = ({ handleSubmit }) => {
 
   return (
     <form onSubmit={(event) => handleSubmit(event, searchFields)}>
-      <input
-        type="search"
-        name="firstUser"
-        required
-        value={firstUser}
-        onChange={handleChange}
-      />
-      <input
-        type="search"
-        name="secondUser"
-        required
-        value={secondUser}
-        onChange={handleChange}
-      />
+      <div className="input-group">
+        <div className="form-input">
+          <input
+            type="search"
+            name="firstUser"
+            required
+            value={firstUser}
+            onChange={handleChange}
+          />
+          <label for="firstUser">First GitHub user</label>
+        </div>
+
+        <div className="form-input">
+          <input
+            type="search"
+            name="secondUser"
+            required
+            value={secondUser}
+            onChange={handleChange}
+          />
+          <label for="firstUser">Second GitHub user</label>
+        </div>
+      </div>
       <button type="submit">Search</button>
     </form>
   );
