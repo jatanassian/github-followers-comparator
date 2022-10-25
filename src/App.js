@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import SearchBox from "./components/search-box/search-box.component";
+import FollowersList from "./components/followers-list/followers-list.component";
 import "./App.css";
 
 function App() {
@@ -8,8 +9,6 @@ function App() {
   const [commonFollowers, setCommonFollowers] = useState([]);
 
   useEffect(() => {
-    console.log(firstUserFollowers);
-    console.log(secondUserFollowers);
     const followers = firstUserFollowers.filter((follower1) => {
       return secondUserFollowers.find(
         (follower2) => follower1.id === follower2.id
@@ -45,6 +44,7 @@ function App() {
     <div className="App">
       <h1>Please enter two GitHub users</h1>
       <SearchBox handleSubmit={handleSubmit} />
+      <FollowersList followers={commonFollowers} />
     </div>
   );
 }
