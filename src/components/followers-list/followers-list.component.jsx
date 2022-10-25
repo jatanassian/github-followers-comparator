@@ -3,9 +3,10 @@ import "./followers-list.styles.css";
 
 const FollowersList = ({ followers }) => (
   <div className="followers-list">
-    {followers.map((follower) => (
-      <Follower follower={follower} key={follower.id} />
-    ))}
+    {followers &&
+      followers.map((follower) => (
+        <Follower follower={follower} key={follower.id} />
+      ))}
   </div>
 );
 
