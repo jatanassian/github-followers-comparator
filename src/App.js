@@ -56,9 +56,20 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Please enter two GitHub users</h1>
+      <h1>GitHub Finder</h1>
+      <h3>
+        Please enter two GitHub users to find out which followers they have in
+        common
+      </h3>
       <SearchBox handleSubmit={handleSubmit} />
-      <FollowersList followers={commonFollowers} />
+      {commonFollowers && commonFollowers.length === 0 ? (
+        <p>
+          Those two users don't share any follower in common. <br /> Try with
+          other users!
+        </p>
+      ) : (
+        <FollowersList followers={commonFollowers} />
+      )}
     </div>
   );
 }
