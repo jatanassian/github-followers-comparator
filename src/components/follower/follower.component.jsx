@@ -1,7 +1,10 @@
-const Follower = ({ follower: { login } }) => {
+import "./follower.styles.css";
+
+const Follower = ({ follower: { login, avatar_url } }) => {
   return (
-    <div>
-      <h6>{login}</h6>
+    <div className="card">
+      <img src={avatar_url} className="avatar" alt="" />
+      <h3>{login}</h3>
     </div>
   );
 };

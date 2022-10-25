@@ -1,7 +1,8 @@
 import Follower from "../follower/follower.component";
+import "./followers-list.styles.css";
 
 const FollowersList = ({ followers }) => (
-  <div>
+  <div className="followers-list">
     {followers.map((follower) => (
       <Follower follower={follower} key={follower.id} />
     ))}
