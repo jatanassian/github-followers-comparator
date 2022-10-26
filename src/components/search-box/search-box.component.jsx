@@ -23,6 +23,7 @@ const SearchBox = ({ handleSubmit, loading }) => {
           <input
             type="search"
             name="firstUser"
+            placeholder="Type a username"
             required
             value={firstUser}
             onChange={handleChange}
@@ -34,6 +35,7 @@ const SearchBox = ({ handleSubmit, loading }) => {
           <input
             type="search"
             name="secondUser"
+            placeholder="Type a username"
             required
             value={secondUser}
             onChange={handleChange}
