@@ -41,6 +41,11 @@ form button:hover {
   background-color: rgb(52, 84, 181);
 }
 
+form button:disabled {
+  cursor: default;
+  background-color: rgb(112, 126, 169);
+}
+
 @media only screen and (max-width: 500px) {
   form .input-group {
     flex-direction: column;
