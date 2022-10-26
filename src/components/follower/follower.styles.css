@@ -7,7 +7,20 @@
 
 .card .avatar {
   border-radius: 50%;
-  width: 60px;
+  width: 80px;
+}
+
+.card button {
+  background-color: white;
+  border: solid 1px black;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+.card button:hover {
+  cursor: pointer;
+  background-color: rgb(235, 235, 235);
 }
 
 .card a {
