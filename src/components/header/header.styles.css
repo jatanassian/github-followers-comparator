@@ -10,3 +10,9 @@
   margin-bottom: 25px;
   font-size: 50px;
 }
+
+@media screen and (max-width: 570px) {
+  .header-container .app-title {
+    font-size: 40px;
+  }
+}
