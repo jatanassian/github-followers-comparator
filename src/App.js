@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SearchBox from "./components/search-box/search-box.component";
+import Header from "./components/header/header.component";
 import FollowersList from "./components/followers-list/followers-list.component";
 import "./App.css";
 
@@ -61,12 +61,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>GitHub Finder</h1>
-      <h3>
-        Please enter two GitHub users to find out which followers they have in
-        common
-      </h3>
-      <SearchBox handleSubmit={handleSubmit} />
+      <Header handleSubmit={handleSubmit} />
       {commonFollowers && commonFollowers.length === 0 ? (
         <p>
           Those two users don't share any follower in common. <br /> Try with
