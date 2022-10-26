@@ -7,7 +7,7 @@ const defaultSearchFields = {
   secondUser: "",
 };
 
-const SearchBox = ({ handleSubmit }) => {
+const SearchBox = ({ handleSubmit, loading }) => {
   const [searchFields, setSearchFields] = useState(defaultSearchFields);
   const { firstUser, secondUser } = searchFields;
 
@@ -41,7 +41,9 @@ const SearchBox = ({ handleSubmit }) => {
           <label>Second GitHub user</label>
         </div>
       </div>
-      <button type="submit">Search</button>
+      <button type="submit" disabled={loading}>
+        {loading ? "Loading..." : "Search"}
+      </button>
     </form>
   );
 };

@@ -7,6 +7,7 @@ import { parseLinkHeader } from "@web3-storage/parse-link-header";
 
 function App() {
   const [commonFollowers, setCommonFollowers] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   // Return an array of common followers
   const findCommonFollowers = (followers1, followers2) => {
@@ -43,6 +44,7 @@ function App() {
   // Get followers, find common followers and set them in the state
   const handleSubmit = async (event, searchFields) => {
     setCommonFollowers(null);
+    setLoading(true);
     const { firstUser, secondUser } = searchFields;
     event.preventDefault();
 
@@ -56,12 +58,14 @@ function App() {
       setCommonFollowers(followersInCommon);
     } catch (error) {
       alert(error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="App">
-      <Header handleSubmit={handleSubmit} />
+      <Header handleSubmit={handleSubmit} loading={loading} />
       {commonFollowers && commonFollowers.length === 0 ? (
         <p>
           Those two users don't share any follower in common. <br /> Try with
